@@ -1,22 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>Test StatPath</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StatPath - Panduan Analisis Statistik</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h2>StatPath - Mode Testing</h2>
+  <header>
+    <h1>StatPath</h1>
+    <p>Panduan interaktif memilih uji statistik yang tepat untuk penelitianmu</p>
+  </header>
+
+  <main>
+    <section id="quiz">
+      <div id="progress-bar"></div>
+      <p id="progress-text"></p>
+      <div id="question-container"></div>
+      <div style="margin-top:20px;">
+        <button id="btn-back" class="option-btn">Kembali</button>
+        <button id="btn-restart" class="option-btn">Ulangi</button>
+      </div>
+    </section>
+
+    <section id="result" style="display:none;">
+      <div id="result-container"></div>
+      <div style="margin-top:20px;">
+        <button id="btn-restart-result" class="option-btn">Ulangi</button>
+      </div>
+    </section>
+  </main>
+
+  <footer style="margin-top:40px;text-align:center;color:#aaa;font-size:0.9em;">
+    &copy; 2026 StatPath. Dibuat untuk edukasi statistik.
+  </footer>
 
   <script src="js/knowledge-base.js"></script>
   <script src="js/decisions.js"></script>
   <script src="js/engine.js"></script>
-
+  <script src="js/ui.js"></script>
   <script>
-    // Fungsi dummy sementara agar engine.js tidak error
-    // Nanti diganti oleh temanmu dengan tampilan yang sesungguhnya
-    function tampilkanPertanyaan(obj) { console.log("PERTANYAAN:", obj); }
-    function tampilkanHasil(obj) { console.log("HASIL:", obj); }
-    function perbaruiProgress(s, t) { console.log("PROGRESS:", s, "/", t); }
-    function tampilkanError(pesan) { console.error("ERROR:", pesan); }
+    // Inisialisasi tombol navigasi
+    document.addEventListener("DOMContentLoaded", function() {
+      if (document.getElementById("btn-back")) {
+        document.getElementById("btn-back").onclick = function() { kembali(); };
+      }
+      if (document.getElementById("btn-restart")) {
+        document.getElementById("btn-restart").onclick = function() { ulangi(); };
+      }
+      if (document.getElementById("btn-restart-result")) {
+        document.getElementById("btn-restart-result").onclick = function() { ulangi(); };
+      }
+      // Mulai kuis saat halaman dimuat
+      if (typeof mulaiKuis === 'function') mulaiKuis();
+    });
   </script>
 </body>
 </html>
