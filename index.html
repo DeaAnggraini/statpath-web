@@ -1,22 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>Test StatPath</title>
+    <meta charset="UTF-8">
+    <title>StatPath - Testing</title>
 </head>
 <body>
-  <h2>StatPath - Mode Testing</h2>
+    <h3>StatPath v2 - Mode Testing</h3>
+    <p>Buka DevTools Console (F12) untuk mulai testing.</p>
 
-  <script src="js/knowledge-base.js"></script>
-  <script src="js/decisions.js"></script>
-  <script src="js/engine.js"></script>
+    <script src="js/panduan-images.js"></script>
+    <script src="js/knowledge-base.js"></script>
+    <script src="js/decisions.js"></script>
+    <script src="js/engine.js"></script>
 
-  <script>
-    // Fungsi dummy sementara agar engine.js tidak error
-    // Nanti diganti oleh temanmu dengan tampilan yang sesungguhnya
-    function tampilkanPertanyaan(obj) { console.log("PERTANYAAN:", obj); }
-    function tampilkanHasil(obj) { console.log("HASIL:", obj); }
-    function perbaruiProgress(s, t) { console.log("PROGRESS:", s, "/", t); }
-    function tampilkanError(pesan) { console.error("ERROR:", pesan); }
-  </script>
+    <script>
+        // Dummy fungsi frontend - pengganti ui.js sementara
+        function tampilkanPertanyaan(obj) {
+            console.log("PERTANYAAN:", obj.teks);
+            console.log("Blok:", obj.blok, "-", obj.namaBlok);
+            console.log("Pilihan:");
+            obj.pilihan.forEach(function(p) {
+                console.log("  " + p.huruf + ". " + p.teks, "->", p.selanjutnya);
+            });
+        }
+
+        function tampilkanHasil(obj) {
+            console.log("=== HASIL ===");
+            console.log("Uji:", obj.nama);
+            console.log("Deskripsi:", obj.deskripsi);
+            console.log("Prasyarat:", obj.prasyarat.length, "item");
+            console.log("Data lengkap:", obj);
+        }
+
+        function perbaruiProgress(sekarang, total) {
+            console.log("Progress:", sekarang, "/", total);
+        }
+
+        function tampilkanError(pesan) {
+            console.error("ERROR:", pesan);
+        }
+
+        console.log("Backend siap. Mulai dengan mengetik: mulaiKuis()");
+    </script>
 </body>
 </html>
