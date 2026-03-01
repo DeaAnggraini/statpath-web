@@ -1,46 +1,60 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>StatPath - Testing</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StatPath - Panduan Analisis Statistik</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h3>StatPath v2 - Mode Testing</h3>
-    <p>Buka DevTools Console (F12) untuk mulai testing.</p>
+  <header>
+    <h1>StatPath</h1>
+    <p>Panduan interaktif memilih uji statistik yang tepat untuk penelitianmu</p>
+  </header>
 
-    <script src="js/panduan-images.js"></script>
-    <script src="js/knowledge-base.js"></script>
-    <script src="js/decisions.js"></script>
-    <script src="js/engine.js"></script>
+  <main>
+    <section id="quiz">
+      <div id="progress-bar"></div>
+      <p id="progress-text"></p>
+      <div id="question-container"></div>
+      <div style="margin-top:20px;">
+        <button id="btn-back" class="option-btn">Kembali</button>
+        <button id="btn-restart" class="option-btn">Ulangi</button>
+      </div>
+    </section>
 
-    <script>
-        // Dummy fungsi frontend - pengganti ui.js sementara
-        function tampilkanPertanyaan(obj) {
-            console.log("PERTANYAAN:", obj.teks);
-            console.log("Blok:", obj.blok, "-", obj.namaBlok);
-            console.log("Pilihan:");
-            obj.pilihan.forEach(function(p) {
-                console.log("  " + p.huruf + ". " + p.teks, "->", p.selanjutnya);
-            });
-        }
+    <section id="result" style="display:none;">
+      <div id="result-container"></div>
+      <div style="margin-top:20px;">
+        <button id="btn-restart-result" class="option-btn">Ulangi</button>
+      </div>
+    </section>
+  </main>
 
-        function tampilkanHasil(obj) {
-            console.log("=== HASIL ===");
-            console.log("Uji:", obj.nama);
-            console.log("Deskripsi:", obj.deskripsi);
-            console.log("Prasyarat:", obj.prasyarat.length, "item");
-            console.log("Data lengkap:", obj);
-        }
+  <footer style="margin-top:40px;text-align:center;color:#aaa;font-size:0.9em;">
+    &copy; 2026 StatPath. Dibuat untuk edukasi statistik.
+  </footer>
 
-        function perbaruiProgress(sekarang, total) {
-            console.log("Progress:", sekarang, "/", total);
-        }
-
-        function tampilkanError(pesan) {
-            console.error("ERROR:", pesan);
-        }
-
-        console.log("Backend siap. Mulai dengan mengetik: mulaiKuis()");
-    </script>
+  <script src="js/panduan-images.js"></script>
+  <script src="js/knowledge-base.js"></script>
+  <script src="js/decisions.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    // Inisialisasi tombol navigasi
+    document.addEventListener("DOMContentLoaded", function() {
+      if (document.getElementById("btn-back")) {
+        document.getElementById("btn-back").onclick = function() { kembali(); };
+      }
+      if (document.getElementById("btn-restart")) {
+        document.getElementById("btn-restart").onclick = function() { ulangi(); };
+      }
+      if (document.getElementById("btn-restart-result")) {
+        document.getElementById("btn-restart-result").onclick = function() { ulangi(); };
+      }
+      // Mulai kuis saat halaman dimuat
+      if (typeof mulaiKuis === 'function') mulaiKuis();
+    });
+  </script>
 </body>
 </html>
